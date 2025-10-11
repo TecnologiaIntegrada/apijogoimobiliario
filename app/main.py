@@ -8,7 +8,6 @@ app = FastAPI(
     title="API Simulador de Jogo Imobiliário",
     description="""
     API que simula partidas de um jogo similar ao Banco Imobiliário.
-    Teste técnico 7commAPI Python.
     
     ## Características
     

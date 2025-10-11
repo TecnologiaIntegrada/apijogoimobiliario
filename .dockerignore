@@ -1,0 +1,40 @@
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+.venv
+
+# Build outputs
+dist/
+build/
+out/
+bin/
+obj/
+
+# Logs
+*.log
+logs/
+
+# Git
+.git/
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Kubernetes
+k8s/
+
+# Testes
+coverage/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

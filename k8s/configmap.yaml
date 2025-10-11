@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: apijogoimobiliario
+data:
+  APP_NAME: "API Jogo Imobiliario"
+  LOG_LEVEL: "info"
+  PORT: "3000"
+  # Adicione outras configurações não sensíveis

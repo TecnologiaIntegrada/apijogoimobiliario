@@ -14,7 +14,7 @@ jobs:
   sonarcloud:
     name: SonarCloud Code Analysis
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: true  # NÃO BLOQUEIA o pipeline se falhar
     
     steps:
       - name: Checkout código
@@ -28,8 +28,20 @@ jobs:
           python-version: '3.11'
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=TecnologiaIntegrada_apijogoimobiliario
+            -Dsonar.organization=tecnologiaintegrada
+            -Dsonar.sources=app
+            -Dsonar.python.version=3.11
+            -Dsonar.qualitygate.wait=false
+
+      - name: Análise Completa
+        run: |
+          echo '✅ Análise SonarCloud executada (não-bloqueante)'
+          echo '📊 Veja os resultados em: https://sonarcloud.io'

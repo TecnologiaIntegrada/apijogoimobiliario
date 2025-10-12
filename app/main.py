@@ -8,6 +8,7 @@ app = FastAPI(
     title="API Simulador de Jogo Imobiliário",
     description="""
     API que simula partidas de um jogo similar ao Banco Imobiliário.
+    Solução modelo criada por https://canada-software.com
     
     ## Características
     

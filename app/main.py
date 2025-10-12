@@ -47,15 +47,6 @@ app = FastAPI(
     ```bash
     curl -X POST http://localhost:8080/jogo/simular
     ```
-    
-    ### Resposta esperada:
-    
-    ```json
-    {
-      "vencedor": "cauteloso",
-      "jogadores": ["cauteloso", "aleatorio", "exigente", "impulsivo"]
-    }
-    ```
     """,
     version="1.0.0",
     docs_url="/docs",

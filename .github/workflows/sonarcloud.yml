@@ -36,7 +36,6 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=TecnologiaIntegrada_apijogoimobiliario
-            -Dsonar.organization=tecnologiaintegrada
             -Dsonar.sources=app
             -Dsonar.python.version=3.11
             -Dsonar.qualitygate.wait=false

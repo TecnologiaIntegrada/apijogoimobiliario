@@ -14,33 +14,47 @@ jobs:
   sonarcloud:
     name: SonarCloud Code Analysis
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: true  # NÃO BLOQUEIA o pipeline se falhar
     
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Histórico completo para análise
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Executar testes com cobertura
+        continue-on-error: true
+        run: |
+          pytest --cov=app --cov-report=xml --cov-report=term || echo "Testes falharam mas continuando..."
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
-        continue-on-error: true
+        uses: SonarSource/sonarcloud-github-action@master
+        continue-on-error: true  # NÃO BLOQUEIA se SonarCloud falhar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=TecnologiaIntegrada_apijogoimobiliario
+            -Dsonar.organization=canada-software-com
+            -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.sources=app
+            -Dsonar.tests=tests
             -Dsonar.python.version=3.11
             -Dsonar.qualitygate.wait=false
 
       - name: Análise Completa
         run: |
-          echo '✅ Análise SonarCloud executada (não-bloqueante)'
-          echo '📊 Veja os resultados em: https://sonarcloud.io'
+          echo "✅ Análise SonarCloud executada (não-bloqueante)"
+          echo "📊 Veja os resultados em: https://sonarcloud.io"

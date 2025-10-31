@@ -6,7 +6,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: pipelines
   
   source:
     repoURL: https://github.com/TecnologiaIntegrada/apijogoimobiliario.git

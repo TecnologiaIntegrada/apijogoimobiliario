@@ -4,9 +4,7 @@ metadata:
   name: apijogoimobiliario
   namespace: apijogoimobiliario
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
 spec:
   ingressClassName: traefik
   rules:
@@ -20,7 +18,3 @@ spec:
             name: apijogoimobiliario
             port:
               number: 80
-  # tls:
-  # - hosts:
-  #   - api-jogo.canada-software.com
-  #   secretName: apijogoimobiliario-tls
